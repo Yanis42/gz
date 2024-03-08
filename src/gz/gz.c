@@ -966,35 +966,6 @@ HOOK uint32_t afx_rand_hook(void)
   }
 }
 
-HOOK void guPerspectiveF_hook(MtxF *mf)
-{
-  /* replaces the guMtxIdentF function in guPerspectiveF */
-  maybe_init_gp();
-  if (gz.ready && settings->bits.wiivc_cam) {
-    /* overwrite the scale argument in guPerspectiveF */
-    /* this assumes that mf is at 0($sp) on entry, which should be true */
-    __asm__ ("la      $t0, 0x3F800000;"
-             "sw      $t0, 0x0048 + %0;"
-             :: "R"(mf) : "t0");
-  }
-  mf->xx = 1.f;
-  mf->xy = 0.f;
-  mf->xz = 0.f;
-  mf->xw = 0.f;
-  mf->yx = 0.f;
-  mf->yy = 1.f;
-  mf->yz = 0.f;
-  mf->yw = 0.f;
-  mf->zx = 0.f;
-  mf->zy = 0.f;
-  mf->zz = 1.f;
-  mf->zw = 0.f;
-  mf->wx = 0.f;
-  mf->wy = 0.f;
-  mf->wz = 0.f;
-  mf->ww = 1.f;
-}
-
 HOOK void camera_hook(void *camera)
 {
   maybe_init_gp();
