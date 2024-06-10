@@ -1,0 +1,17 @@
+{
+    "configurations": [
+        {
+            "name": "gz",
+            "intelliSenseMode": "${default}",
+            "compilerPath": "/usr/bin/mips64-ultra-elf-gcc",
+            "includePath": [
+                "${workspaceFolder}/**",
+                "src",
+                "include",
+                "/usr/mips64-ultra-elf/**"
+            ],
+            "defines": []
+        }
+    ],
+    "version": 4
+}
