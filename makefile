@@ -1,11 +1,19 @@
 PACKAGE_TARNAME      ?= gz
 PACKAGE_URL          ?= github.com/glankk/gz
-ifeq ($(origin PACKAGE_VERSION), undefined)
-PACKAGE_VERSION      := $(shell git describe --tags --dirty 2>/dev/null)
-ifeq ('$(PACKAGE_VERSION)', '')
-PACKAGE_VERSION       = Unknown version
+
+# temporary thing to make sure I don't break anything
+DETERMINISTIC		 ?= 1
+ifeq ($(DETERMINISTIC),0)
+	ifeq ($(origin PACKAGE_VERSION), undefined)
+		PACKAGE_VERSION      := $(shell git describe --tags --dirty 2>/dev/null)
+		ifeq ('$(PACKAGE_VERSION)', '')
+			PACKAGE_VERSION       = Unknown version
+		endif
+	endif
+else
+	PACKAGE_VERSION		  = Deterministic Build
 endif
-endif
+
 target                = mips64
 program_prefix        = $(target)-
 AS                    = $(program_prefix)as
@@ -63,19 +71,41 @@ ELF-VC                = $(ELF-gz-oot-1.0-vc) $(ELF-gz-oot-1.1-vc) $(ELF-gz-oot-1
 
 GZ                    = $(foreach v,$(GZ_VERSIONS),gz-$(v))
 HOOKS                 = $(foreach v,$(GZ_VERSIONS),gz-$(v)-hooks)
+
+# GZ Rules
 all                   : $(GZ)
+
 all-hooks             : $(HOOKS)
+
 clean                 :
 	rm -rf $(OBJDIR) $(BINDIR) $(HOOKDIR)
+
 clean-hooks           : $(foreach v,$(HOOKS),clean-$(v))
+
 distclean             :
 	rm -rf ups *.z64 *.wad
-.PHONY                : all clean distclean
 
+format				  :
+	find include src -name '*.h' -o -name '*.c' | xargs clang-format -i
+
+# temporary rules to make sure I don't break anything
+verify				  :
+	$(MAKE) clean
+	$(MAKE)
+	md5sum -c checksums.md5
+
+gensums:
+	md5sum ./bin/gz/oot-*/*.bin > checksums.md5
+
+.PHONY                : all clean distclean format verify gensums
+
+# Homeboy Rules
 all-homeboy           :
 	cd homeboy && $(MAKE) all
+
 clean-homeboy         :
 	cd homeboy && $(MAKE) clean
+
 .PHONY                : all-homeboy clean-homeboy
 
 define bin_template

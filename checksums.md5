@@ -1,0 +1,16 @@
+b0d67db8246ca4cd78538664ecc5d2d3  ./bin/gz/oot-1.0-vc/gz.bin
+b00e3eabf0bf5ec316df54dc83245e48  ./bin/gz/oot-1.0/gz.bin
+f0f836244c00f12bf1345422df7e3fb9  ./bin/gz/oot-1.1-vc/gz.bin
+7aee85f40d514674672ac2ce47bf36f2  ./bin/gz/oot-1.1/gz.bin
+01cf7e1c66d0ecd3472dcfe6fbe7fd07  ./bin/gz/oot-1.2-vc/gz.bin
+01b8ccdb2437a2a9fcfb9561180d2817  ./bin/gz/oot-1.2/gz.bin
+6656e2f5df4e1c2658e209df62127426  ./bin/gz/oot-ce-j-vc/gz.bin
+30d1dcd9846736a03eb4b2ea2dd26750  ./bin/gz/oot-ce-j/gz.bin
+d1b265c5326a45ba0729e9746a78e0f1  ./bin/gz/oot-gc-j-vc/gz.bin
+316a7cdcad4f1a0c8bf7b75ea5943047  ./bin/gz/oot-gc-j/gz.bin
+5a7a05ed8fa201c2a3dbf0e3f9e075fe  ./bin/gz/oot-gc-u-vc/gz.bin
+df07b5cadd0024bd520a3bd594c38c13  ./bin/gz/oot-gc-u/gz.bin
+af031b9b7ff28f12228151856016d950  ./bin/gz/oot-mq-j-vc/gz.bin
+60c4469ff8244a73946ea522d672b601  ./bin/gz/oot-mq-j/gz.bin
+2e482ab2f847df7b090c35ca0b7249c6  ./bin/gz/oot-mq-u-vc/gz.bin
+f4835e28943a1e5844156ec091cdfa07  ./bin/gz/oot-mq-u/gz.bin
